@@ -1,15 +1,18 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <PageHome />
+  <!-- <PageTest /> -->
 </template>
 
 <script>
 import PageHome from '@/components/PageHome'
+// import PageTest from '@/components/PageTest'
 
 export default {
   name: 'App',
   components: {
-    PageHome
+    PageHome,
+    // PageTest
   }
 }
 </script>
