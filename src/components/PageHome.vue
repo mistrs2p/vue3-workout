@@ -1,94 +1,27 @@
-<!-- SFC => Single File Application
-    we have Template, Javascript, CSS in one File
- -->
- <!-- find methods returns a value of the first element in a provided array that satisfied the provided testing function -->
 <template>
-  <div v-for="thread in threads" :key="thread.id" class="col-large push-top">
-    <h1>{{ thread.title }}</h1>
-
-    <div class="post-list">
-      <div 
-        class="post" 
-        v-for="postId in thread.posts" 
-        :key="postId"
-      >
-        <div class="user-info">
-          <a href="#" class="user-name">{{ userById(postById(postId).userId).name }}</a>
-
-          <a href="#">
-            <img
-              class="avatar-large"
-              :src="userById(postById(postId).userId).avatar"
-              alt=""
-            />
-          </a>
-
-          <p class="desktop-only text-small">107 posts</p>
-        </div>
-
-        <div class="post-content">
-          <div>
-            <p>
-              {{ postById(postId).text }}
-            </p>
-          </div>
-        </div>
-
-        <div class="post-date text-faded">{{ postById(postId).publishedAt }}</div>
-
-      </div>
-     
-    </div>
-  </div>
-<!-- 
-  <div>Hello from page home</div>
-  <div v-for="thread in threads" :key="thread.id">
-    <h2>{{ thread.title }}</h2>
-    <div v-for="postId in thread.posts" :key="postId">
-      <p>{{ posts.find(post => post.id === postId).text}}</p>
-      <p>{{ users.find(user => user.id === posts.find(post => post.id === postId).userId).name }}</p>
-    </div>
-
-    OR
-    <div v-for="postId in thread.posts" :key="postId">
-      <p>{{ userByPostId(postId).name }}</p>
-      <p>{{ userById(postById(postId).userId).name }}</p>
-      <p>{{ postById(postId).text }}</p>
-    </div>
-  </div> -->
+  <h1>Welcome to the forum</h1>
+  <ThreadList :threads="threads" />
 </template>
 
 <script>
 // @ symbol reffers to src location
 import dataSource from "@/data.json";
+import ThreadList from './ThreadList.vue'
 console.log(dataSource);
 export default {
+  components: {
+    ThreadList
+  },
   data() {
     return {
-      dataSource,
       threads: dataSource.threads,
-      posts: dataSource.posts,
-      users: dataSource.users,
     };
   },
-  methods: {
-    postById(postId) {
-      return this.posts.find((post) => post.id === postId);
-    },
-    // userById(userId) {
-    //   return this.users.find(user => user.id === this.postById(userId).userId)
-    // },
-    userByPostId(postId) {
-      return this.users.find(
-        (user) => user.id === this.postById(postId).userId
-      );
-    },
-    userById(userId) {
-      return this.users.find((user) => user.id === userId);
-    },
-  },
+
 };
 </script>
 
-<style>
+<style scoped>
+
+
 </style>

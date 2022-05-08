@@ -1,7 +1,12 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from '@/router'
+// import * as VueRouter from 'vue-router'
+// console.log(VueRouter)
 
-const myApp = createApp(App)
-// myApp.component('NiceComponent', {})
-// myApp.use(SomePlugin)
-myApp.mount('#app')
+
+const app = createApp(App)
+app.use(router)
+// app.component('NiceComponent', {})
+// app.use(SomePlugin)
+app.mount('#app')
